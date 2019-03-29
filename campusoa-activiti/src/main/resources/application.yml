@@ -1,0 +1,42 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/
+#security:
+#  basic:
+#    enabled: false
+server:
+  port: 8006
+spring:
+#freemarker模板配置
+  freemarker:
+    suffix: .ftl
+    cache: false
+    charset: UTF-8
+    contentType: text/html
+    requestContextAttribute: ctx
+    templateEncoding: UTF-8
+    templateLoaderPath: classpath:/templates/
+    settings:
+      defaultEncoding: UTF-8
+      url_escaping_charset: UTF-8
+      locale: zh_CN
+  activiti:
+      database-schema-update: false
+  http:
+    activiti:
+      check-process-definitions: false
+  application:
+    name: campusoa-activiti
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3307/clouddo?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&nullCatalogMeansCurrent=true
+    username: root
+    password: root
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+
+mybatis:
+  mapper-locations: mapper/**Mapper.xml
+  configuration:
+      map-underscore-to-camel-case: true

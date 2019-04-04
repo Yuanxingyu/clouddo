@@ -1,4 +1,4 @@
-package org.stary.campusoaactiviti.controller;
+package org.stary.campusoa.activiti.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package org.stary.campusoaactiviti;
+package org.stary.campusoa.activiti;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

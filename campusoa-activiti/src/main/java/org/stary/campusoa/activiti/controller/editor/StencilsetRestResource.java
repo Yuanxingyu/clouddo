@@ -1,4 +1,4 @@
-package org.stary.campusoaactiviti.controller.editor;
+package org.stary.campusoa.activiti.controller.editor;
 
 import org.activiti.engine.ActivitiException;
 import org.apache.commons.io.IOUtils;

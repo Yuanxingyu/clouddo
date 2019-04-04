@@ -1,4 +1,4 @@
-package org.stary.campusoaactiviti;
+package org.stary.campusoa.activiti;
 
 import org.activiti.spring.boot.SecurityAutoConfiguration;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +12,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableFeignClients(basePackages = {"com.bootdo"})
 @EnableCaching
 @EnableScheduling
-@SpringBootApplication(scanBasePackages = {"org.stary.campusoaactiviti", "com.bootdo.clouddocommon"})
+@SpringBootApplication(scanBasePackages = {"org.stary.campusoa.activiti", "com.bootdo.clouddocommon"})
 @EnableAutoConfiguration(exclude = {SecurityAutoConfiguration.class})
 public class CampusoaActivitiApplication {
 

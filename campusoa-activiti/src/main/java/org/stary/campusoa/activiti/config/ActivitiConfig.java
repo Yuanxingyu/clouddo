@@ -1,4 +1,4 @@
-package org.stary.campusoaactiviti.config;
+package org.stary.campusoa.activiti.config;
 
 import org.activiti.engine.ProcessEngineConfiguration;
 import org.activiti.engine.impl.history.HistoryLevel;

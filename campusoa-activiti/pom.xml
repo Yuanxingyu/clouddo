@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>campusoa-activiti</name>
-    <description>Demo project for Spring Boot</description>
+    <description>校园oa工作流</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

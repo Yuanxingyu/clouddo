@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.stary.campusoa.business.dao.JxjhDao">
+
+    <resultMap id="jxjhResultMap" type="org.stary.campusoa.business.entity.Jxjh">
+        <id column="tid" property="tid"/> 
+        <result column="insertBy" property="insertBy"/> 
+        <result column="updateBy" property="updateBy"/> 
+        <result column="insertTime" property="insertTime"/> 
+        <result column="updateTime" property="updateTime"/> 
+        <result column="logicaldeletecode" property="logicaldeletecode"/> 
+        <result column="kcmc" property="kcmc"/> 
+        <result column="kclb" property="kclb"/> 
+        <result column="kcxz" property="kcxz"/> 
+        <result column="xf" property="xf"/> 
+        <result column="xqxs" property="xqxs"/> 
+        <result column="jkxs" property="jkxs"/> 
+        <result column="syxs" property="syxs"/> 
+        <result column="kkxy" property="kkxy"/> 
+        <result column="kcdm" property="kcdm"/> 
+
+        
+        
+    </resultMap>
+
+    <sql id="jxjhColumns">
+        t_jxjh.tid AS "tid",
+        t_jxjh.insertBy AS "insertBy",
+        t_jxjh.updateBy AS "updateBy",
+        t_jxjh.insertTime AS "insertTime",
+        t_jxjh.updateTime AS "updateTime",
+        t_jxjh.logicaldeletecode AS "logicaldeletecode",
+        t_jxjh.kcmc AS "kcmc",
+        t_jxjh.kclb AS "kclb",
+        t_jxjh.kcxz AS "kcxz",
+        t_jxjh.xf AS "xf",
+        t_jxjh.xqxs AS "xqxs",
+        t_jxjh.jkxs AS "jkxs",
+        t_jxjh.syxs AS "syxs",
+        t_jxjh.kkxy AS "kkxy",
+        t_jxjh.kcdm AS "kcdm"
+    </sql>
+
+    <sql id="jxjhJoins">
+        
+    </sql>
+
+    <select id="get" resultMap="jxjhResultMap">
+        SELECT
+        <include refid="jxjhColumns" />
+        FROM t_jxjh <include refid="jxjhJoins" />
+        <where>
+        t_jxjh.tid = #{id}
+        </where>
+    </select>
+
+    <select id="findList" resultMap="jxjhResultMap">
+        SELECT
+        <include refid="jxjhColumns" />
+        FROM t_jxjh <include refid="jxjhJoins" />
+        <where>
+        </where>
+    </select>
+
+    <select id="findAllList" resultMap="jxjhResultMap">
+        SELECT
+        <include refid="jxjhColumns" />
+        FROM t_jxjh <include refid="jxjhJoins" />
+        <where>
+        </where>
+    </select>
+
+    <insert id="insert">
+        INSERT INTO t_jxjh(
+            tid,
+            insertBy,
+            updateBy,
+            insertTime,
+            updateTime,
+            logicaldeletecode,
+            kcmc,
+            kclb,
+            kcxz,
+            xf,
+            xqxs,
+            jkxs,
+            syxs,
+            kkxy,
+            kcdm
+        )
+        VALUES (
+            #{tid},
+            #{insertBy},
+            #{updateBy},
+            #{insertTime},
+            #{updateTime},
+            #{logicaldeletecode},
+            #{kcmc},
+            #{kclb},
+            #{kcxz},
+            #{xf},
+            #{xqxs},
+            #{jkxs},
+            #{syxs},
+            #{kkxy},
+            #{kcdm}
+        )
+    </insert>
+
+    <insert id="insertBatch">
+        INSERT INTO t_jxjh(
+            tid,
+            insertBy,
+            updateBy,
+            insertTime,
+            updateTime,
+            logicaldeletecode,
+            kcmc,
+            kclb,
+            kcxz,
+            xf,
+            xqxs,
+            jkxs,
+            syxs,
+            kkxy,
+            kcdm
+        )
+        VALUES
+        <foreach collection ="list" item="jxjh" separator =",">
+        (
+            #{jxjh.tid},
+            #{jxjh.insertBy},
+            #{jxjh.updateBy},
+            #{jxjh.insertTime},
+            #{jxjh.updateTime},
+            #{jxjh.logicaldeletecode},
+            #{jxjh.kcmc},
+            #{jxjh.kclb},
+            #{jxjh.kcxz},
+            #{jxjh.xf},
+            #{jxjh.xqxs},
+            #{jxjh.jkxs},
+            #{jxjh.syxs},
+            #{jxjh.kkxy},
+            #{jxjh.kcdm}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update">
+        UPDATE t_jxjh SET
+        tid = #{tid},
+        insertBy = #{insertBy},
+        updateBy = #{updateBy},
+        insertTime = #{insertTime},
+        updateTime = #{updateTime},
+        logicaldeletecode = #{logicaldeletecode},
+        kcmc = #{kcmc},
+        kclb = #{kclb},
+        kcxz = #{kcxz},
+        xf = #{xf},
+        xqxs = #{xqxs},
+        jkxs = #{jkxs},
+        syxs = #{syxs},
+        kkxy = #{kkxy},
+        kcdm = #{kcdm}
+        WHERE tid = #{tid}
+    </update>
+
+    <update id="delete">
+        DELETE FROM t_jxjh
+        WHERE tid = #{tid}
+    </update>
+
+</mapper>

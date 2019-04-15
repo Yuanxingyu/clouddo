@@ -1,0 +1,25 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/
+#security:
+#  basic:
+#    enabled: false
+server:
+  port: 8007
+spring:
+  application:
+    name: campusoa-business
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/clouddo?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+mybatis:
+  mapper-locations: mybatis/**Mapper.xml
+  configuration:
+      map-underscore-to-camel-case: true
+#logging:
+#  level: debug

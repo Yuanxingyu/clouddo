@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.stary.campusoa.business.dao.ZyDao">
+
+    <resultMap id="zyResultMap" type="org.stary.campusoa.business.entity.Zy">
+        <id column="tid" property="tid"/> 
+        <result column="insertBy" property="insertBy"/> 
+        <result column="updateBy" property="updateBy"/> 
+        <result column="insertTime" property="insertTime"/> 
+        <result column="updateTime" property="updateTime"/> 
+        <result column="logicaldeletecode" property="logicaldeletecode"/> 
+        <result column="zymc" property="zymc"/> 
+        <result column="ssxyid" property="ssxyid"/> 
+        <result column="zydm" property="zydm"/> 
+
+        
+        
+    </resultMap>
+
+    <sql id="zyColumns">
+        t_zy.tid AS "tid",
+        t_zy.insertBy AS "insertBy",
+        t_zy.updateBy AS "updateBy",
+        t_zy.insertTime AS "insertTime",
+        t_zy.updateTime AS "updateTime",
+        t_zy.logicaldeletecode AS "logicaldeletecode",
+        t_zy.zymc AS "zymc",
+        t_zy.ssxyid AS "ssxyid"
+    </sql>
+
+    <sql id="zyJoins">
+        left join t_xy on t_zy.ssxyid=t_xy.tid
+    </sql>
+
+    <select id="get" resultMap="zyResultMap">
+        SELECT
+        <include refid="zyColumns" />
+        FROM t_zy <include refid="zyJoins" />
+        <where>
+        t_zy.tid = #{id}
+        </where>
+    </select>
+
+    <select id="findList" resultType="java.util.Map">
+        SELECT
+        <include refid="zyColumns" />,
+        t_zy.zydm AS "zydm",
+        t_xy.xymc AS "xymc"
+        FROM t_zy <include refid="zyJoins" />
+        <where>
+        </where>
+    </select>
+
+    <select id="findAllList" resultType="java.util.Map">
+        SELECT
+        <include refid="zyColumns" />,
+        t_zy.zydm AS "zydm",
+        t_xy.xymc AS "xymc"
+        FROM t_zy <include refid="zyJoins" />
+        <where>
+        </where>
+    </select>
+
+    <insert id="insert">
+        INSERT INTO t_zy(
+            tid,
+            insertBy,
+            updateBy,
+            insertTime,
+            updateTime,
+            logicaldeletecode,
+            zymc,
+            ssxyid,
+            zydm
+        )
+        VALUES (
+            #{tid},
+            #{insertBy},
+            #{updateBy},
+            #{insertTime},
+            #{updateTime},
+            #{logicaldeletecode},
+            #{zymc},
+            #{ssxyid},
+            #{zydm}
+        )
+    </insert>
+
+    <insert id="insertBatch">
+        INSERT INTO t_zy(
+            tid,
+            insertBy,
+            updateBy,
+            insertTime,
+            updateTime,
+            logicaldeletecode,
+            zymc,
+            ssxyid,
+            zydm
+        )
+        VALUES
+        <foreach collection ="list" item="zy" separator =",">
+        (
+            #{zy.tid},
+            #{zy.insertBy},
+            #{zy.updateBy},
+            #{zy.insertTime},
+            #{zy.updateTime},
+            #{zy.logicaldeletecode},
+            #{zy.zymc},
+            #{zy.ssxyid},
+            #{zy.zydm}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update">
+        UPDATE t_zy SET
+        tid = #{tid},
+        insertBy = #{insertBy},
+        updateBy = #{updateBy},
+        insertTime = #{insertTime},
+        updateTime = #{updateTime},
+        logicaldeletecode = #{logicaldeletecode},
+        zymc = #{zymc},
+        ssxyid = #{ssxyid},
+        zydm = #{zydm}
+        WHERE tid = #{tid}
+    </update>
+
+    <update id="delete">
+        DELETE FROM t_zy
+        WHERE tid = #{tid}
+    </update>
+
+</mapper>

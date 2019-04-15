@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.stary.campusoa.business.dao.StudentDao">
+
+    <resultMap id="studentResultMap" type="org.stary.campusoa.business.entity.Student">
+        <id column="tid" property="tid"/> 
+        <result column="insertBy" property="insertBy"/> 
+        <result column="updateBy" property="updateBy"/> 
+        <result column="insertTime" property="insertTime"/> 
+        <result column="updateTime" property="updateTime"/> 
+        <result column="logicaldeletecode" property="logicaldeletecode"/> 
+        <result column="userid" property="userid"/> 
+        <result column="xsname" property="xsname"/> 
+        <result column="xgh" property="xgh"/> 
+        <result column="ssxyid" property="ssxyid"/> 
+        <result column="sszyid" property="sszyid"/> 
+        <result column="rxnf" property="rxnf"/> 
+        <result column="ssbjid" property="ssbjid"/> 
+        <result column="xszt" property="xszt"/> 
+        <result column="xq" property="xq"/> 
+
+        
+        
+    </resultMap>
+
+    <sql id="studentColumns">
+        t_xs.tid AS "tid",
+        t_xs.insertBy AS "insertBy",
+        t_xs.updateBy AS "updateBy",
+        t_xs.insertTime AS "insertTime",
+        t_xs.updateTime AS "updateTime",
+        t_xs.logicaldeletecode AS "logicaldeletecode",
+        t_xs.userid AS "userid",
+        t_xs.xsname AS "xsname",
+        t_xs.xgh AS "xgh",
+        t_xs.ssxyid AS "ssxyid",
+        t_xs.sszyid AS "sszyid",
+        t_xs.rxnf AS "rxnf",
+        t_xs.ssbjid AS "ssbjid",
+        t_xs.xszt AS "xszt",
+        t_xs.xq AS "xq"
+    </sql>
+
+    <sql id="studentJoins">
+        
+    </sql>
+
+    <select id="get" resultMap="studentResultMap">
+        SELECT
+        <include refid="studentColumns" />
+        FROM t_xs <include refid="studentJoins" />
+        <where>
+        t_xs.tid = #{id}
+        </where>
+    </select>
+
+    <select id="findList" resultMap="studentResultMap">
+        SELECT
+        <include refid="studentColumns" />
+        FROM t_xs <include refid="studentJoins" />
+        <where>
+        </where>
+    </select>
+
+    <select id="findAllList" resultMap="studentResultMap">
+        SELECT
+        <include refid="studentColumns" />
+        FROM t_xs <include refid="studentJoins" />
+        <where>
+        </where>
+    </select>
+
+    <insert id="insert">
+        INSERT INTO t_xs(
+            tid,
+            insertBy,
+            updateBy,
+            insertTime,
+            updateTime,
+            logicaldeletecode,
+            userid,
+            xsname,
+            xgh,
+            ssxyid,
+            sszyid,
+            rxnf,
+            ssbjid,
+            xszt,
+            xq
+        )
+        VALUES (
+            #{tid},
+            #{insertBy},
+            #{updateBy},
+            #{insertTime},
+            #{updateTime},
+            #{logicaldeletecode},
+            #{userid},
+            #{xsname},
+            #{xgh},
+            #{ssxyid},
+            #{sszyid},
+            #{rxnf},
+            #{ssbjid},
+            #{xszt},
+            #{xq}
+        )
+    </insert>
+
+    <insert id="insertBatch">
+        INSERT INTO t_xs(
+            tid,
+            insertBy,
+            updateBy,
+            insertTime,
+            updateTime,
+            logicaldeletecode,
+            userid,
+            xsname,
+            xgh,
+            ssxyid,
+            sszyid,
+            rxnf,
+            ssbjid,
+            xszt,
+            xq
+        )
+        VALUES
+        <foreach collection ="list" item="student" separator =",">
+        (
+            #{student.tid},
+            #{student.insertBy},
+            #{student.updateBy},
+            #{student.insertTime},
+            #{student.updateTime},
+            #{student.logicaldeletecode},
+            #{student.userid},
+            #{student.xsname},
+            #{student.xgh},
+            #{student.ssxyid},
+            #{student.sszyid},
+            #{student.rxnf},
+            #{student.ssbjid},
+            #{student.xszt},
+            #{student.xq}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update">
+        UPDATE t_xs SET
+        tid = #{tid},
+        insertBy = #{insertBy},
+        updateBy = #{updateBy},
+        insertTime = #{insertTime},
+        updateTime = #{updateTime},
+        logicaldeletecode = #{logicaldeletecode},
+        userid = #{userid},
+        xsname = #{xsname},
+        xgh = #{xgh},
+        ssxyid = #{ssxyid},
+        sszyid = #{sszyid},
+        rxnf = #{rxnf},
+        ssbjid = #{ssbjid},
+        xszt = #{xszt},
+        xq = #{xq}
+        WHERE tid = #{tid}
+    </update>
+
+    <update id="delete">
+        DELETE FROM t_xs
+        WHERE tid = #{tid}
+    </update>
+
+</mapper>

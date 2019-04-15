@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.stary.campusoa.business.dao.BjDao">
+
+    <resultMap id="bjResultMap" type="org.stary.campusoa.business.entity.Bj">
+        <id column="tid" property="tid"/> 
+        <result column="insertBy" property="insertBy"/> 
+        <result column="updateBy" property="updateBy"/> 
+        <result column="insertTime" property="insertTime"/> 
+        <result column="updateTime" property="updateTime"/> 
+        <result column="logicaldeletecode" property="logicaldeletecode"/> 
+        <result column="ssxyid" property="ssxyid"/> 
+        <result column="sszyid" property="sszyid"/> 
+        <result column="bjmc" property="bjmc"/> 
+        <result column="bjdm" property="bjdm"/>
+        <result column="xq" property="xq"/>
+
+        
+        
+    </resultMap>
+
+    <sql id="bjColumns">
+        t_bj.tid AS "tid",
+        t_bj.insertBy AS "insertBy",
+        t_bj.updateBy AS "updateBy",
+        t_bj.insertTime AS "insertTime",
+        t_bj.updateTime AS "updateTime",
+        t_bj.logicaldeletecode AS "logicaldeletecode",
+        t_bj.ssxyid AS "ssxyid",
+        t_bj.sszyid AS "sszyid",
+        t_bj.bjmc AS "bjmc",
+        t_bj.bjdm AS "bjdm",
+        t_bj.xq AS "xq"
+    </sql>
+
+    <sql id="bjJoins">
+        left join t_zy zy on zy.tid = t_bj.sszyid
+        left join t_xy xy on xy.tid = t_bj.ssxyid
+    </sql>
+
+    <select id="get" resultMap="bjResultMap">
+        SELECT
+        <include refid="bjColumns" />
+        FROM t_bj <include refid="bjJoins" />
+        <where>
+        t_bj.tid = #{id}
+        </where>
+    </select>
+
+    <select id="findList" resultType="java.util.Map">
+        SELECT
+        xy.xymc AS "xymc",
+        zy.zymc AS "zymc",
+        <include refid="bjColumns" />
+        FROM t_bj <include refid="bjJoins" />
+        <where>
+        </where>
+    </select>
+
+    <select id="findAllList" resultType="java.util.Map">
+        SELECT
+        xy.xymc AS "xymc",
+        zy.zymc AS "zymc",
+        <include refid="bjColumns" />
+        FROM t_bj <include refid="bjJoins" />
+        <where>
+        </where>
+    </select>
+
+    <insert id="insert">
+        INSERT INTO t_bj(
+            tid,
+            insertBy,
+            updateBy,
+            insertTime,
+            updateTime,
+            logicaldeletecode,
+            ssxyid,
+            sszyid,
+            bjmc,
+            bjdm,
+            xq
+        )
+        VALUES (
+            #{tid},
+            #{insertBy},
+            #{updateBy},
+            #{insertTime},
+            #{updateTime},
+            #{logicaldeletecode},
+            #{ssxyid},
+            #{sszyid},
+            #{bjmc},
+            #{bjdm},
+            #{xq}
+        )
+    </insert>
+
+    <insert id="insertBatch">
+        INSERT INTO t_bj(
+            tid,
+            insertBy,
+            updateBy,
+            insertTime,
+            updateTime,
+            logicaldeletecode,
+            ssxyid,
+            sszyid,
+            bjmc,
+            bjdm,
+            xq
+        )
+        VALUES
+        <foreach collection ="list" item="bj" separator =",">
+        (
+            #{bj.tid},
+            #{bj.insertBy},
+            #{bj.updateBy},
+            #{bj.insertTime},
+            #{bj.updateTime},
+            #{bj.logicaldeletecode},
+            #{bj.ssxyid},
+            #{bj.sszyid},
+            #{bj.bjmc},
+            #{bj.bjdm},
+            #{bj.xq}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update">
+        UPDATE t_bj SET
+        tid = #{tid},
+        insertBy = #{insertBy},
+        updateBy = #{updateBy},
+        insertTime = #{insertTime},
+        updateTime = #{updateTime},
+        logicaldeletecode = #{logicaldeletecode},
+        ssxyid = #{ssxyid},
+        sszyid = #{sszyid},
+        bjmc = #{bjmc},
+        bjdm = #{bjdm},
+        xq = #{xq}
+        WHERE tid = #{tid}
+    </update>
+
+    <update id="delete">
+        DELETE FROM t_bj
+        WHERE tid = #{tid}
+    </update>
+
+</mapper>

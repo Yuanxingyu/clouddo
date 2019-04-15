@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.stary.campusoa.business.dao.XyDao">
+
+    <resultMap id="xyResultMap" type="org.stary.campusoa.business.entity.Xy">
+        <id column="tid" property="tid"/> 
+        <result column="insertBy" property="insertBy"/> 
+        <result column="updateBy" property="updateBy"/> 
+        <result column="insertTime" property="insertTime"/> 
+        <result column="updateTime" property="updateTime"/> 
+        <result column="logicaldeletecode" property="logicaldeletecode"/> 
+        <result column="xymc" property="xymc"/> 
+        <result column="xydm" property="xydm"/> 
+
+        
+        
+    </resultMap>
+
+    <sql id="xyColumns">
+        t_xy.tid AS "tid",
+        t_xy.insertBy AS "insertBy",
+        t_xy.updateBy AS "updateBy",
+        t_xy.insertTime AS "insertTime",
+        t_xy.updateTime AS "updateTime",
+        t_xy.logicaldeletecode AS "logicaldeletecode",
+        t_xy.xymc AS "xymc",
+        t_xy.xydm AS "xydm"
+    </sql>
+
+    <sql id="xyJoins">
+        
+    </sql>
+
+    <select id="get" resultMap="xyResultMap">
+        SELECT
+        <include refid="xyColumns" />
+        FROM t_xy <include refid="xyJoins" />
+        <where>
+        t_xy.tid = #{id}
+        </where>
+    </select>
+
+    <select id="findList" resultMap="xyResultMap">
+        SELECT
+        <include refid="xyColumns" />
+        FROM t_xy <include refid="xyJoins" />
+        <where>
+        </where>
+    </select>
+
+    <select id="findAllList" resultMap="xyResultMap">
+        SELECT
+        <include refid="xyColumns" />
+        FROM t_xy <include refid="xyJoins" />
+        <where>
+        </where>
+    </select>
+
+    <insert id="insert">
+        INSERT INTO t_xy(
+            tid,
+            insertBy,
+            updateBy,
+            insertTime,
+            updateTime,
+            logicaldeletecode,
+            xymc,
+            xydm
+        )
+        VALUES (
+            #{tid},
+            #{insertBy},
+            #{updateBy},
+            #{insertTime},
+            #{updateTime},
+            #{logicaldeletecode},
+            #{xymc},
+            #{xydm}
+        )
+    </insert>
+
+    <insert id="insertBatch">
+        INSERT INTO t_xy(
+            tid,
+            insertBy,
+            updateBy,
+            insertTime,
+            updateTime,
+            logicaldeletecode,
+            xymc,
+            xydm
+        )
+        VALUES
+        <foreach collection ="list" item="xy" separator =",">
+        (
+            #{xy.tid},
+            #{xy.insertBy},
+            #{xy.updateBy},
+            #{xy.insertTime},
+            #{xy.updateTime},
+            #{xy.logicaldeletecode},
+            #{xy.xymc},
+            #{xy.xydm}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update">
+        UPDATE t_xy SET
+        tid = #{tid},
+        insertBy = #{insertBy},
+        updateBy = #{updateBy},
+        insertTime = #{insertTime},
+        updateTime = #{updateTime},
+        logicaldeletecode = #{logicaldeletecode},
+        xymc = #{xymc},
+        xydm = #{xydm}
+        WHERE tid = #{tid}
+    </update>
+
+    <update id="delete">
+        DELETE FROM t_xy
+        WHERE tid = #{tid}
+    </update>
+
+</mapper>

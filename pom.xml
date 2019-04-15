@@ -19,6 +19,7 @@
         <module>clouddo-cms</module>
         <module>clouddo-base</module>
         <module>campusoa-activiti</module>
+        <module>campusoa-business</module>
     </modules>
     <repositories>
         <repository>
